@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SuperAdmin extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+    protected $with=['akun'];
+    public function akun(){
+        return $this->belongsTo(Akun::class);
+    }
 }
