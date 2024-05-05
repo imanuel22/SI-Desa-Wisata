@@ -8,10 +8,9 @@
 </head>
 <body>
 
-  <h1>Berita terkini</h1>
+  
   <div id="cards">
   </div>
-
 
   <h1>Berita</h1>
   <table id="subjects_table" class="table table-bordered" style="width:100%">
@@ -44,18 +43,17 @@
     $.ajax({
       url: "{{route('berita.index')}}",
       method:"get",
-      success:function(data){
-        console.log(data.data)
-        
-        var html = "<div class='judul'>"+data.data[0].judul+"</div>"+
-        "<div class='isi'>"+data.data[0].isi_berita+"</div>"
-        console.log(html)
-
-        for (var i = 1; i < data.data.length; i++) {
+      success:function(data){        
+        var html = " "
+        for (var i = 0; i < data.data.length; i++) {
           var berita = data.data[i]
-          html += "<div class='judul'>"+data.data[i].judul+"</div>"+
-          "<div class='isi'>"+data.data[i].isi_berita+"</div>"
-          console.log(html)
+          html += "<div class='card'>"+
+            "<h1 class='judul'>"+data.data[i].judul+"</h1>"+
+            "<img src='' alt='' width='100' height='100'>"+
+            "<p class='isi_berita'>"+data.data[i].isi_berita+"</p>"+
+            "<p class='penulis'>"+data.data[i].penulis+"</p>"+
+            "<p class='tgl_upload'>"+data.data[i].tgl_upload+"</p>"+
+          "</div>" 
         }
         $('#cards').html(html)
       },
